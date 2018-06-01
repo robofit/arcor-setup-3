@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+    <rosparam command="delete" param="/art/robot"/>
+    <rosparam command="load" ns="/art/robot" file="$(find art_empty_arm)/config/robot.yaml"/>
+
+    <node ns="/art/robot/" name="art_empty_arm" pkg="art_empty_arm"
+        type="node.py" output="screen" respawn="false" />
+
+</launch>

@@ -1,0 +1,6 @@
+robot_id: empty
+arms:
+  arm:
+    gripper_link: empty
+    capabilities:
+      get_ready: yes
