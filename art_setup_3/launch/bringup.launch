@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<launch> 
+
+    <arg name="projectors" default="localhost"/>
+    <arg name="scene_server" default="localhost" />
+    <arg name="scene_size" default="1.0,0.6"/>
+    <arg name="scene_origin" default="0,0"/>
+    <arg name="rpm" default="2000"/>
+    <arg name="empty_robot" default="false"/>
+    
+
+    <group ns="/art/interface/projected_gui">
+
+        <param name="scene_origin" value="$(arg scene_origin)"/>
+        <param name="scene_size" value="$(arg scene_size)"/>
+        <param name="rpm" value="$(arg rpm)"/>
+        <param name="scene_server" value="$(arg scene_server)"/>
+        <param name="scene_server_port" value="1234"/>
+    </group>
+    
+    
+    <include file="$(find art_setup_3)/launch/kinect.xml"/>
+    
+    <include file="$(find art_calibration)/launch/calibration_marker_detector.launch"/>
+
+    <include file="$(find art_calibration)/launch/art_calibration.launch">
+      <arg name="cells" value="localhost"/>
+      <arg name="x_offset" value="0.208"/>
+      <arg name="y_offset" value="0.122"/>
+      <arg name="z_offset" value="0.0"/>
+    </include>
+
+    <include file="$(find art_projected_gui)/launch/app.launch">
+        <arg name="projectors" value="localhost"/>
+        <arg name="scene_server" value="localhost"/>
+        <arg name="scene_size" value="1.0, 0.7"/>
+        <arg name="scene_origin" value="0.0, 0.0"/>
+    </include>
+
+    <include file="$(find art_touch_driver)/launch/touch.launch">
+        <arg name="calib_x_min" value="0.1"/>
+        <arg name="calib_x_max" value="0.7"/>
+        <arg name="calib_y_min" value="0.10"/>
+        <arg name="calib_y_max" value="0.55"/>
+    </include>
+
+    <include file="$(find art_sound)/launch/node.launch">
+        <arg name="machine" value="localhost"/>
+    </include>
+
+    <include file="$(find art_projected_gui)/launch/projector.launch">
+        <arg name="machine" value="localhost"/> 
+        <arg name="screen_number" value="1"/>
+    </include>
+
+    <include file="$(find art_empty_arm)/launch/bringup.launch" if="$(arg empty_robot)">
+    </include>
+
+    <include file="$(find art_dobot)/launch/bringup.launch" if="$(arg empty_robot)">
+    </include>
+
+    <include file="$(find art_setup_3)/launch/detectors.launch">
+    </include>
+
+
+
+    
+</launch>

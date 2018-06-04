@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="calib_x_min" default="0.1"/>
+    <arg name="calib_x_max" default="0"/>
+    <arg name="calib_y_min" default="0"/>
+    <arg name="calib_y_max" default="0"/>
+	
+	<node ns="/art/interface/touchtable" name="driver_node" pkg="art_touch_driver" type="node.py" output="screen">
+	  <param name="calib_x_min" value="$(arg calib_x_min)"/>
+ 	  <param name="calib_x_max" value="$(arg calib_x_max)"/>
+	  <param name="calib_y_min" value="$(arg calib_y_min)"/>
+	  <param name="calib_y_max" value="$(arg calib_y_max)"/>
+	</node>
+	
+</launch>
