@@ -1,7 +1,7 @@
-# artable-setup-3
-ARTable setup in Robolab@FIT. The portable and lightweight one.
+# arcor-setup-3
+ARCOR setup in Robolab@FIT. The portable and lightweight one.
 
-![ARTable - setup 3](https://i.imgur.com/mx4h4MB.jpg)
+![ARCOR - setup 3](https://i.imgur.com/mx4h4MB.jpg)
 
 The setup consists of:
 
