@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+trap 'kill $(jobs -p)' EXIT
+
 export ARTABLE=3
 export ARTABLE_ROBOT_INTERFACE=art_dobot_interface.ArtDobotInterface
 source /home/dev/arcor_ws/devel/setup.bash

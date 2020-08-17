@@ -1,19 +1,12 @@
 <?xml version="1.0"?>
 <launch> 
 
-   <include ns="/art/localhost" file="$(find art_arcode_detector)/launch/ar_code_detector_boxes_bundle.launch">
+  
+    <include ns="/art/localhost" file="$(find art_arcode_detector)/launch/ar_code_detector_bundle.launch">
       <arg name="machine" value="localhost"/>
       <arg name="output_frame" value="localhost_kinect2_rgb_optical_frame"/>
     </include>
 
-    <include ns="/art/localhost" file="$(find art_arcode_detector)/launch/ar_code_detector_boxes_individual.launch">
-      <arg name="machine" value="localhost"/>
-      <arg name="output_frame" value="localhost_kinect2_rgb_optical_frame"/>
-    </include>
 
 
-
-    <node ns="/art/localhost" name="ar_code_detector_black" pkg="art_arcode_detector" type="detector.py" output="screen">
-          <remap from="ar_pose_marker" to="ar_pose_marker_objects"/>
-    </node>
 </launch>

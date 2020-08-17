@@ -15,6 +15,10 @@ def main():
 
     art = ArtApiHelper()
     art.wait_for_api()
+	
+
+    art.store_object_type(obj_type("mala_desticka", 0.0125, 0.06, 0.06))
+    art.store_object_type(obj_type("Modry_kontejner", 0.14, 0.195, 0.075, container=True))
 
     # delete all created programs
     ph = art.get_program_headers()
