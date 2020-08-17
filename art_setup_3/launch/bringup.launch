@@ -1,13 +1,22 @@
 <?xml version="1.0"?>
 <launch> 
 
-    <arg name="projectors" default="localhost"/>
+    <group ns="/art/conf">
+      <param name="table/size" value="1.0,0.6"/>
+    </group>
+
     <arg name="scene_server" default="localhost" />
     <arg name="scene_size" default="1.0,0.6"/>
     <arg name="scene_origin" default="0,0"/>
     <arg name="rpm" default="2000"/>
     <arg name="empty_robot" default="false"/>
     
+
+    <rosparam command="delete" param="/art/interface/projected_gui/plugins"/>
+    <rosparam command="load" ns="/art/interface/projected_gui/plugins" file="$(find art_setup_3)/config/gui-plugins.yaml"/>
+
+    <rosparam command="delete" param="/art/instructions"/>
+    <rosparam command="load" ns="/art/instructions" file="$(find art_instructions)/config/instructions.yaml"/>
 
     <group ns="/art/interface/projected_gui">
 
@@ -17,7 +26,13 @@
         <param name="scene_server" value="$(arg scene_server)"/>
         <param name="scene_server_port" value="1234"/>
     </group>
+
+    <include file="$(find art_simple_tracker)/launch/art_simple_tracker.launch">
+        <arg name="ground_objects_on_table" value="true"/>
+        <arg name="ground_bb_axis" value="0"/>
+    </include>
     
+    <node pkg="art_fake_nodes" name="visual_inspection_fake_node" type="visual_inspection.py"/>
     
     <include file="$(find art_setup_3)/launch/kinect.xml"/>
     
@@ -31,7 +46,6 @@
     </include>
 
     <include file="$(find art_projected_gui)/launch/app.launch">
-        <arg name="projectors" value="localhost"/>
         <arg name="scene_server" value="localhost"/>
         <arg name="scene_size" value="1.0, 0.7"/>
         <arg name="scene_origin" value="0.0, 0.0"/>
@@ -48,7 +62,7 @@
         <arg name="machine" value="localhost"/>
     </include>
 
-    <include file="$(find art_projected_gui)/launch/projector.launch">
+    <include file="$(find art_projector)/launch/projector.launch">
         <arg name="machine" value="localhost"/> 
         <arg name="screen_number" value="1"/>
     </include>
@@ -56,7 +70,7 @@
     <include file="$(find art_empty_arm)/launch/bringup.launch" if="$(arg empty_robot)">
     </include>
 
-    <include file="$(find art_dobot)/launch/bringup.launch" if="$(arg empty_robot)">
+    <include file="$(find art_dobot)/launch/bringup.launch" unless="$(arg empty_robot)">
     </include>
 
     <include file="$(find art_setup_3)/launch/detectors.launch">

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rosparam load art_calibration.yaml /art_calibration
+rosparam load art_projector.yaml /art/localhost/projector/calibration_matrix
+rosparam load art_touch.yaml /art/interface/touchtable/calibration_matrix
+

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+export ARTABLE=3
+export ARTABLE_ROBOT_INTERFACE=art_dobot_interface.ArtDobotInterface
+source /home/dev/arcor_ws/devel/setup.bash
+
+roscore &
+sleep 1
+
+rosparam load art_calibration.yaml /art_calibration
+rosparam load art_projector.yaml /art/localhost/projector/calibration_matrix
+rosparam load art_touch.yaml /art/interface/touchtable/calibration_matrix
+
+roslaunch art_bringup bringup.launch &
+roslaunch art_setup_3 bringup.launch

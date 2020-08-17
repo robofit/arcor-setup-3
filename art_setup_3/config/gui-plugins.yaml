@@ -1,0 +1,15 @@
+plugins:
+
+  TouchTablePlugin:
+      package: art_projected_gui.plugins
+
+  ScenePublisherPlugin:
+      package: art_projected_gui.plugins
+
+  ProjectorsPlugin:
+      package: art_projected_gui.plugins
+      params:
+        projectors: ["localhost"]
+
+  SoundPlugin:
+      package: art_projected_gui.plugins

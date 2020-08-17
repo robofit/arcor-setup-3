@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rosparam dump art_calibration.yaml /art_calibration
+rosparam dump art_projector.yaml /art/localhost/projector/calibration_matrix
+rosparam dump art_touch.yaml /art/interface/touchtable/calibration_matrix
+
